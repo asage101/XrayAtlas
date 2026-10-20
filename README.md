@@ -124,7 +124,7 @@ XrayAtlas/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/XrayAtlas.git
+git clone https://github.com/asage101/XrayAtlas.git
 cd XrayAtlas
 ```
 
