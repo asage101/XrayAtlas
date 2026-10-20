@@ -1,79 +1,123 @@
-# XrayAtlas
-XrayAtlas is an automated X-ray classification and registration system designed to support medical imaging workflows. Its goal is to reduce human error and improve efficiency in healthcare, while also building a foundation for future machine learning applications.
 
+# XrayAtlas: Automated X-Ray Classification and Registration
 
+XrayAtlas is a computer vision and machine learning application developed to automate X-ray image classification and registration.
 
-## Important Links
+The project explores how image processing and deep learning techniques can be integrated into medical imaging workflows to support image organization, analysis, and alignment.
 
-| [Timesheet](https://1sfu-my.sharepoint.com/:x:/g/personal/hamarneh_sfu_ca/Ee6kO7cinINLooeKdn8ViQkB3oTuvH0Tr2U7wwR0N1VgxA?e=3B3SqY) | [Slack channel](https://cmpt419spring2025.slack.com/archives/C086RGK8TEV) | [Project report](https://www.overleaf.com/8591374339sfbpfqxfvjjj#9bc4b8) |
-|-----------|---------------|-------------------------|
+**Course:** CMPT 419 – Biomedical Image Computing  
+**Institution:** Simon Fraser University  
+**Date:** Spring 2025  
+**Project Type:** Undergraduate group project
 
+## Project Overview
 
+Medical imaging workflows often involve large collections of images that require identification, classification, and alignment.
 
-## Table of Contents
-1. [Demo](#demo)
+XrayAtlas was developed to investigate two components of this process:
 
-2. [Installation](#installation)
+1. **Image Classification:** Using machine learning to identify anatomical regions represented in X-ray images.
+2. **Image Registration:** Aligning medical images to support comparison and further analysis.
 
-3. [Reproducing this project](#repro)
+The project combines these components into a Python-based application.
 
-4. [Guidance](#guide)
+## Project Demo
 
+[![Watch XrayAtlas Demo](https://img.shields.io/badge/Watch_Demo-YouTube-red?logo=youtube)](https://youtu.be/61XbSw7Ck1A)
 
-<a name="demo"></a>
-## 1. Project demo
-
-[![YouTube](https://img.shields.io/badge/Watch%20on-YouTube-red?logo=youtube)](https://youtu.be/61XbSw7Ck1A)
 [![XrayAtlas Demo](./images/XrayAtlas.png)](https://youtu.be/61XbSw7Ck1A)
 
+## Technical Methods
 
-### Project Structure
+### X-Ray Image Classification
 
+The classification component uses convolutional neural networks (CNNs) to predict anatomical regions from X-ray images.
 
-```bash
-repository
-├── src                          ## Source code
-├── Classification.ipynb         ## Jupyter Notebook 
-├── README.md                    ## Project Description
-├── requirements.yml             ## Requirements to run the project
-├── main.py                      ## Project entry
-├── predict_image_here           ## Folder to add sample images for registration
+Techniques explored include:
+
+- Image preprocessing and normalization
+- Data augmentation
+- Model training using TensorFlow/Keras
+- Addressing imbalanced training data
+- Evaluating classification performance
+
+### Image Registration
+
+The registration component is intended to align X-ray images to facilitate comparison and analysis.
+
+The application combines image classification and registration within a unified workflow.
+
+## Technologies
+
+- **Programming:** Python
+- **Machine Learning:** TensorFlow / Keras
+- **Image Processing:** Computer vision and image registration
+- **Development:** Jupyter Notebook, Conda
+- **Dataset:** UNIFESP X-ray Body Part Classifier dataset
+
+## Repository Structure
+
+```text
+XrayAtlas/
+├── src/                    # Source code
+├── Classification.ipynb   # Classification notebook
+├── images/                 # Project screenshots
+├── predict_image_here/     # Sample image input directory
+├── main.py                 # Application entry point
+├── requirements.yml        # Conda environment
+└── README.md               # Project documentation
 ```
 
-<a name="installation"></a>
+## Installation
 
-## 2. Installation
-
+### 1. Clone the repository
 
 ```bash
-git clone $THISREPO
-cd $THISREPO
+git clone https://github.com/YOUR-USERNAME/XrayAtlas.git
+cd XrayAtlas
+```
+
+### 2. Create the Conda environment
+
+```bash
 conda env create -f requirements.yml
 conda activate xray_atlas
-mkdir data
-cd ./data
-kaggle competitions download -c unifesp-x-ray-body-part-classifier
 ```
 
-<a name="repro"></a>
-## 3. Reproduction
-Unzip the unifesp-x-ray-body-part-classifier compressed file, its contents should be in data/unifesp-x-ray-body-part-classifier/(content here)
+### 3. Download the dataset
+
+The classification component uses the
+[UNIFESP X-ray Body Part Classifier dataset](https://www.kaggle.com/competitions/unifesp-x-ray-body-part-classifier/data).
+
+Install and configure the Kaggle API, accept the dataset's access requirements, and download the data:
+
 ```bash
-python main.py --input filepath
-Example is:
-python .\main.py --input .\predict_image_here\sample.png
+mkdir data
+kaggle competitions download -c unifesp-x-ray-body-part-classifier -p data
 ```
- 
-Data can be found at ./data after installation
 
-Output will be displayed and model will be saved at main folder for .keras and at ./output for .h5
+Extract the downloaded archive into the directory expected by the application.
 
-<a name="guide"></a>
-## 4. Guidance
+## Running the Application
 
-- Create a profile on [Kaggle](https://www.kaggle.com)
-- Install Kaggle CLI depending on your [platform](https://www.kaggle.com/docs/api)
-- Join the [competition](https://www.kaggle.com/competitions/unifesp-x-ray-body-part-classifier/data)
-- Perform all the actions listed in Installation part
-- Ensure that the paths for all the data folders are correct in main.py
-- Run actions listed in Reproduction
+Place a supported sample X-ray image in the `predict_image_here` directory.
+
+Run:
+
+```bash
+python main.py --input ./predict_image_here/sample.png
+```
+
+The application processes the input image through the implemented classification and registration workflow.
+
+## Academic Context
+
+This project was developed collaboratively as part of CMPT 419: Biomedical Image Computing at Simon Fraser University.
+
+The project provided practical experience with medical image analysis, machine learning, computer vision, and integrating computational methods into an application.
+
+**Contributors:** Mykhailo Isyp, Niall Shaidullin, Eric Leeson, Ziqian Fan
+
+## Further Information
+
+For an overview of the application and its functionality, see the project demonstration linked above.
